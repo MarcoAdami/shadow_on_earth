@@ -10,3 +10,5 @@ Things to consider:
 - Time
 
 Steps:
+- conversion degree to radians
+- convert the coordinates in a position of a point on a 3d sphere
