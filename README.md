@@ -12,3 +12,9 @@ Things to consider:
 Steps:
 - conversion degree to radians
 - convert the coordinates in a position of a point on a 3d sphere
+    - first setting a point (1,0,0) its position corresponds to the position latitude = 0° and longitude = 0° on earth (in a 3d dimension the x-axis is pointing to you, the y-axis is vertical and the z-azis is orizontal)
+    - then using matrices of rotation, first rotate the point for the latitude and then longitude (it's important to do it in this order)
+
+
+Documentation:
+- For matrices: https://en.wikipedia.org/wiki/Rotation_matrix
