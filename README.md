@@ -23,4 +23,5 @@ Steps:
 
 
 Documentation:
-- For matrices: https://en.wikipedia.org/wiki/Rotation_matrix
+- Rotation matrices: https://en.wikipedia.org/wiki/Rotation_matrix
+- Angle between vectors : https://www.cuemath.com/geometry/angle-between-vectors/
