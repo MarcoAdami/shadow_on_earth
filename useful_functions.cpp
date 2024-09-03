@@ -22,4 +22,6 @@ void matrix_multiplication_explicit(double &x, double &y, double &z, double alfa
     x = trunc(x1 * sign_figures) / sign_figures;
     y = trunc(y1 * sign_figures) / sign_figures;
     z = trunc(z1 * sign_figures) / sign_figures;
+
+    
 }
