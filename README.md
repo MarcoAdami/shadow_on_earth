@@ -20,6 +20,8 @@ Steps:
     - tan(angle) = sin(angle) / cos(angle)
 
 - calculate the shadow lenght using the formula: shadow_lenght = obj_hight * tan(angle)
+- adding other factor:
+    - axis earth inclination
 
 
 Documentation:

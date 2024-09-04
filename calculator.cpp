@@ -2,19 +2,25 @@
 #include <vector> //#include <bits/stdc++.h> // use in terminal std=c++11
 #include <fstream>
 #include <cmath>
+
 #include "useful_functions.h"
 
 using namespace std;
+using namespace chrono;
 
 double solve(double latitude_degree, double longitude_degree)
 {
     double point_x, point_y, point_z;
     double latitude_rad, longitude_rad;
+
+    // latitude rinormalization due to axis earth inclination 23.44°
+    latitude_degree = latitude_degree;
+
     // conversion degree to rad
     latitude_rad = conversion_degree_to_rad(latitude_degree);
     longitude_rad = conversion_degree_to_rad(longitude_degree);
 
-    cout << latitude_degree << " " << longitude_degree << endl;
+    // cout << latitude_degree << " " << longitude_degree << endl;
 
     // conversion coordinates to latitude/longitude to 3d space
     point_x = 1;
@@ -22,24 +28,26 @@ double solve(double latitude_degree, double longitude_degree)
     point_z = 0;
     matrix_multiplication_explicit(point_x, point_y, point_z, latitude_rad, longitude_rad);
 
-    cout << "x: " << point_x << endl;
-    cout << "y: " << point_y << endl;
-    cout << "z: " << point_z << endl;
+    
+    // matrix_multiplication_explicit(point_x, point_y, point_z, latitude_rad, longitude_rad);
+
+    // cout << "x: " << point_x << endl;
+    // cout << "y: " << point_y << endl;
+    // cout << "z: " << point_z << endl;
 
     // calculte the cos e sin of the angle between the two vectors
     double cos_angle = point_x / (sqrt(point_x * point_x + point_y * point_y + point_z * point_z));
     double sin_angle = sqrt(point_y * point_y + point_z * point_z) / (sqrt(point_x * point_x + point_y * point_y + point_z * point_z)) * (point_y >= 0 ? 1 : -1);
 
     // calcultate the anctual angle with arctan
-    double actual_angle = atan2(sin_angle, cos_angle);
-    cout << actual_angle * 180 / M_PI << endl;
+    // double actual_angle = atan2(sin_angle, cos_angle);
+    // cout << actual_angle * 180 / M_PI << endl;
 
     // lenght of the shadow on earth
     double shadow_lenght = 1 * sin_angle / cos_angle;
-    shadow_lenght = shadow_lenght * (shadow_lenght > 0 ? 1 : -1);
+    shadow_lenght = shadow_lenght * (shadow_lenght >= 0 ? 1 : -1);
 
     return shadow_lenght;
-    
 }
 
 int main(int argc, char *argv[])
@@ -51,17 +59,15 @@ int main(int argc, char *argv[])
     double longitude_rad, latitude_rad;
     double res;
 
-    while (!cin.eof() && !cin.fail())
+    while (cin >> latitude_degree && cin >> longitude_degree)
     {
         cout << endl
              << "#########" << endl;
 
         // input longitude and latitude
-        cout << "Latitude: ";
-        cin >> latitude_degree;
+        cout << "Latitude: " << latitude_degree << endl;
 
-        cout << "Longitude: ";
-        cin >> longitude_degree;
+        cout << "Longitude: " << longitude_degree << endl;
 
         res = solve(latitude_degree, longitude_degree);
 
@@ -69,10 +75,19 @@ int main(int argc, char *argv[])
     }
 
     // add table of coordinates and print it
-    int arr_long[9] = {-90, -60, -45, -30, 0, 30, 45, 60, 90};
-    int arr_lat[9] = {90, 60, 45, 30, 0, -30, -45, -60, -90};
+    // int arr_long[9] = {-90, -60, -45, -30, 0, 30, 45, 60, 90};
+    // int arr_lat[9] = {90, 60, 45, 30, 0, -30, -45, -60, -90};
 
-    
+    // for (int i = 0; i < 9; ++i)
+    // {
+    //     cout << arr_lat[i] << ": ";
+    //     for (int j = 0; j < 9; ++j)
+    //     {
+    //         res = solve(arr_lat[i], arr_long[j]);
+    //         cout << res << " ";
+    //     }
+    //     cout << endl;
+    // }
 
     return 0;
 }
