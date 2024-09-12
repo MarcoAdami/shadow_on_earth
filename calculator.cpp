@@ -10,6 +10,14 @@ using namespace chrono;
 
 double solve(double latitude_degree, double longitude_degree)
 {
+    /*
+    Defining the system convention:
+    - Earth is considered as a sphere
+    - X-axis is orizontal and passes through the (0° N, 0° E) cooordinates
+    - Y-axis is vertical and passes through the polse
+    - Z-axis is orizontal and perpendicular to the other two
+    - The rays of the sun are considered perfectly orizontal
+    */
     double point_x, point_y, point_z;
     double latitude_rad, longitude_rad;
 
@@ -22,14 +30,21 @@ double solve(double latitude_degree, double longitude_degree)
 
     // cout << latitude_degree << " " << longitude_degree << endl;
 
-    // conversion coordinates to latitude/longitude to 3d space
+    // starting position
     point_x = 1;
     point_y = 0;
     point_z = 0;
-    matrix_multiplication_explicit(point_x, point_y, point_z, latitude_rad, longitude_rad);
 
-    
-    // matrix_multiplication_explicit(point_x, point_y, point_z, latitude_rad, longitude_rad);
+    // coordinates conversion from latitude/longitude to 3d space
+    latitude_longitude_transformation(point_x, point_y, point_z, latitude_rad, longitude_rad);
+
+    //considering the time
+
+    //considering eart axis inclination
+    //...............................//
+
+
+    // latitude_longitude_traformation(point_x, point_y, point_z, latitude_rad, longitude_rad);
 
     // cout << "x: " << point_x << endl;
     // cout << "y: " << point_y << endl;
