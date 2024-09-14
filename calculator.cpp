@@ -2,20 +2,20 @@
 #include <vector> //#include <bits/stdc++.h> // use in terminal std=c++11
 #include <fstream>
 #include <cmath>
+#include <ctime>
 
 #include "useful_functions.h"
 
 using namespace std;
-using namespace chrono;
 
-double solve(double latitude_degree, double longitude_degree)
+double solve(double latitude_degree, double longitude_degree, bool& night)
 {
     /*
     Defining the system convention:
     - Earth is considered as a sphere
-    - X-axis is orizontal and passes through the (0° N, 0° E) cooordinates
-    - Y-axis is vertical and passes through the polse
-    - Z-axis is orizontal and perpendicular to the other two
+    - X-axis is orizontal and passes through the (0° N, 0° E) cooordinates and its pointed toward you
+    - Y-axis is vertical and passes through the poles and its pointed toward the nordth pole
+    - Z-axis is orizontal and perpendicular to the other two and its pointed toward west
     - The rays of the sun are considered perfectly orizontal
     */
     double point_x, point_y, point_z;
@@ -37,12 +37,17 @@ double solve(double latitude_degree, double longitude_degree)
 
     // coordinates conversion from latitude/longitude to 3d space
     latitude_longitude_transformation(point_x, point_y, point_z, latitude_rad, longitude_rad);
+    
+    // DEBUG
+    printf("Lat_long transformation: (%f, %f, %f) \n", point_x, point_y, point_z);
 
-    //considering the time
+    if(point_x<0){
+        night = 1;
+        return 0;
+    }
 
-    //considering eart axis inclination
+    // considering eart axis inclination
     //...............................//
-
 
     // latitude_longitude_traformation(point_x, point_y, point_z, latitude_rad, longitude_rad);
 
@@ -73,20 +78,35 @@ int main(int argc, char *argv[])
     double longitude_degree, latitude_degree;
     double longitude_rad, latitude_rad;
     double res;
+    bool night;
 
     while (cin >> latitude_degree && cin >> longitude_degree)
     {
+        night=false;
         cout << endl
              << "#########" << endl;
 
         // input longitude and latitude
         cout << "Latitude: " << latitude_degree << endl;
-
         cout << "Longitude: " << longitude_degree << endl;
 
-        res = solve(latitude_degree, longitude_degree);
+        res = solve(latitude_degree, longitude_degree, night);
 
-        cout << res << endl;
+        // DEBUG
+        // double angle_sunset = conversion_degree_to_rad(90);
+        // if ((longi >= angle_sunset || longi <= -angle_sunset) || (lati >= angle_sunset || lati <= -angle_sunset))
+        // {
+        //     x = 0;
+        //     y = 0;
+        //     z = 0;
+        //     return;
+        // }
+        if(!night){
+            printf("Shadow lenght: %f", res);
+        }else{
+            printf("It's night go to bed");
+        }
+        
     }
 
     // add table of coordinates and print it

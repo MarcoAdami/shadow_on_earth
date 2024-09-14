@@ -12,7 +12,7 @@ Things to consider:
 Steps:
 - conversion degree to radians (radian = degree * pi / 180)
 - convert the coordinates in a position of a point on a 3d sphere
-    - first setting a point (1,0,0) its position corresponds to the position latitude = 0° and longitude = 0° on earth (in a 3d dimension the x-axis is pointing to you, the y-axis is vertical and the z-azis is orizontal)
+    - first setting a point (1,0,0) its position corresponds to the position latitude = 0° and longitude = 0° on earth (in a 3d dimension the x-axis is pointing to you, the y-axis is vertical pointing up and the z-azis is orizontal pointing to the left)
     - then using matrices of rotation, first rotate the point for the latitude and then longitude (it's important to do it in this order)
 - find the angle beetween the vector of the coordinates found and the previous vector (1, 0, 0), that is the angle of the sun's rays hitting an object on earth, using the formulas : 
     - cos(angle) = (a*b/|a|*|b|)
@@ -21,7 +21,8 @@ Steps:
 
 - calculate the shadow lenght using the formula: shadow_lenght = obj_hight * tan(angle)
 - adding other factor:
-    - axis earth inclination
+    - time (ADD1)
+    - earth inlcination (ADD2)
 
 
 Documentation:
