@@ -1,0 +1,3 @@
+/Users/marco/Desktop/cose/shadow_on_earth/cmake-build-debug/CMakeFiles/shadow_on_earth.dir
+/Users/marco/Desktop/cose/shadow_on_earth/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/marco/Desktop/cose/shadow_on_earth/cmake-build-debug/CMakeFiles/rebuild_cache.dir

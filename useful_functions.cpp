@@ -6,7 +6,7 @@ using namespace std;
 double round_down(double k)
 {
     // n = 6
-    double sign_figures = 1000000;
+    double sign_figures = 10000;
     k = trunc(k * sign_figures) / sign_figures;
     return k;
 }
@@ -61,11 +61,11 @@ void latitude_longitude_transformation(double &x, double &y, double &z, double l
     double x1, y1, z1;
 
     // ADD1: considering the time
-    longi += time_transformation();
+    // longi += time_transformation();
     // cout << longi << endl;
     //.........................//
 
-    // defining the explicit furmula for the rotation aroud the y and x axis
+    // defining the explicit furmula for the rotation aroud the y and z axis
     x1 = cos(longi) * cos(lati) * x - cos(longi) * sin(lati) * y + sin(longi) * z;
     y1 = sin(lati) * x + cos(lati) * y;
     z1 = -sin(longi) * cos(lati) * x - sin(longi) * sin(lati) * y + cos(longi) * z;
